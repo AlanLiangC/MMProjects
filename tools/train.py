@@ -12,7 +12,7 @@ from mmengine.runner import Runner
 from mmdet3d.utils import replace_ceph_backend
 
 import sys
-sys.path.append('/home/alan/AlanLiang/Projects/3D_Perception/AlanLiang/Projects/MMProjects')
+sys.path.append('/data1/liangao/AlanLiang/Projects/mmdet_projects/MMProjects')
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Train a 3D detector')
@@ -70,7 +70,7 @@ def parse_args():
 
 def main():
     args = parse_args()
-
+    args.resume = 'auto'
     # load config
     cfg = Config.fromfile(args.config)
 
@@ -144,4 +144,5 @@ def main():
 
 
 if __name__ == '__main__':
+    # os.environ['CUDA_VISIBLE_DEVICES']='2'
     main()

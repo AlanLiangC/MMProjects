@@ -173,8 +173,6 @@ class SparseHEDNet(nn.Module):
 
         self.num_point_features = afd_dim
 
-        self.init_weights()
-
     def init_weights(self):
         for _, m in self.named_modules():
             if isinstance(m, (spconv.SubMConv2d, spconv.SubMConv3d)):
@@ -279,8 +277,8 @@ class SparseHEDNet(nn.Module):
 
         x = spconv.SparseConvTensor(
             features=features_unique,
-            indices=indices_unique[:,[0,2,1]],
-            spatial_shape=x.spatial_shape[::-1],
+            indices=indices_unique,
+            spatial_shape=x.spatial_shape,
             batch_size=x.batch_size
         )
         return x
@@ -341,8 +339,6 @@ class SparseHEDNet2D(SparseHEDNet):
         del self.stem
         self.transition = post_act_block_sparse_2d(
             sed_dim, afd_dim, 3, 2, 1, conv_type='spconv', indice_key='transition')
-
-        self.init_weights()
 
     def forward(self, batch_inputs_dict, batch_data_samples):
 

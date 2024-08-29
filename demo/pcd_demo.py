@@ -8,7 +8,7 @@ from mmengine.logging import print_log
 from mmdet3d.apis import LidarDet3DInferencer
 
 import sys
-sys.path.append('/home/alan/AlanLiang/Projects/3D_Perception/AlanLiang/Projects/MMProjects')
+sys.path.append('/data1/liangao/AlanLiang/Projects/mmdet_projects/MMProjects')
 
 def parse_args():
     parser = ArgumentParser()
@@ -16,9 +16,9 @@ def parse_args():
     # parser.add_argument('--model', default='tools/ALTest/temp/pointpillars_hv_secfpn_8xb6-160e_kitti-3d-car.py', help='Config file')
     # parser.add_argument('--weights', default='tools/ALTest/temp/hv_pointpillars_secfpn_6x8_160e_kitti-3d-car_20220331_134606-d42d15ed.pth', help='Checkpoint file')
 
-    parser.add_argument('--pcd', default='demo/data/nuscenes/n015-2018-07-24-11-22-45+0800__LIDAR_TOP__1532402927647951.pcd.bin', help='Point cloud file')
+    parser.add_argument('--pcd', default='tools/ALTest/temp/n015-2018-07-24-11-22-45+0800__LIDAR_TOP__1532402927647951.pcd.bin', help='Point cloud file')
     parser.add_argument('--model', default='mmprojects/UniGF/configs/unigf_test_nusc_v0.py', help='Config file')
-    parser.add_argument('--weights', default='work_dirs/unigf_test_nusc_v0/epoch_10.pth', help='Checkpoint file')
+    parser.add_argument('--weights', default='work_dirs/unigf_test_nusc_v0/epoch_5.pth', help='Checkpoint file')
 
 
     parser.add_argument(
@@ -26,7 +26,7 @@ def parse_args():
     parser.add_argument(
         '--pred-score-thr',
         type=float,
-        default=0.3,
+        default=0.0,
         help='bbox score threshold')
     parser.add_argument(
         '--out-dir',

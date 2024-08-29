@@ -2,8 +2,8 @@ _base_ = ['../../../configs/_base_/default_runtime.py']
 custom_imports = dict(
     imports=['mmprojects.UniGF.unigf'], allow_failed_imports=False)
 
-voxel_size = [0.6, 0.3, 8.0]
-grid_size = [180, 360, 1]
+voxel_size = [0.3, 0.3, 8.0]
+grid_size = [360, 360, 1]
 point_cloud_range = [-54.0, -54.0, -5.0, 54.0, 54.0, 3.0]
 dataset_type = 'NuScenesDataset'
 data_root = 'data/nuscenes/'
@@ -261,7 +261,7 @@ test_pipeline = [
 ]
 
 train_dataloader = dict(
-    batch_size=4,
+    batch_size=12,
     num_workers=4,
     persistent_workers=True,
     sampler=dict(type='DefaultSampler', shuffle=True),
@@ -313,7 +313,7 @@ visualizer = dict(
     type='Det3DLocalVisualizer', vis_backends=vis_backends, name='visualizer')
 
 # learning rate
-lr = 0.003
+lr = 0.0001
 param_scheduler = [
     # learning rate scheduler
     # During the first 8 epochs, learning rate increases from 0 to lr * 10
@@ -357,7 +357,7 @@ param_scheduler = [
 ]
 
 # runtime settings
-train_cfg = dict(by_epoch=True, max_epochs=20, val_interval=20)
+train_cfg = dict(by_epoch=True, max_epochs=20, val_interval=2)
 val_cfg = dict()
 test_cfg = dict()
 
@@ -371,6 +371,6 @@ log_processor = dict(window_size=50)
 
 default_hooks = dict(
     logger=dict(type='LoggerHook', interval=50),
-    checkpoint=dict(type='CheckpointHook', interval=5),
+    checkpoint=dict(type='CheckpointHook', interval=1),
     visualization=dict(type='Det3DVisualizationHook'))
 custom_hooks = [dict(type='DisableObjectSampleHook', disable_after_epoch=16)]
